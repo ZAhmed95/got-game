@@ -49,6 +49,7 @@ helpers do
 end
 
 get '/main.css' do
+  headers 'Content-Type' => 'text/css'
   scss :main
 end
 
