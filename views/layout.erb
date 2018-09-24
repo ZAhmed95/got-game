@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Got Game</title>
+
+  <link rel="stylesheet" href="/foundation/css/foundation.min.css">
+  <link rel="stylesheet" href="/main.css">
+
+  <script src="/foundation/js/vendor/jquery.js"></script>
+</head>
+<body class="<%= if session[:alt_theme] then "dark" else "light" end%>">
+  <header class="top-bar theme alt">
+    <div class="top-bar-left">
+      <h1><strong><em>GOT GAME</em><strong></h1>
+    </div>
+    <nav class="top-bar-right">
+      <ul class="dropdown menu align-left theme alt" data-dropdown-menu>
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/users">All Users</a></li>
+        <% if session[:user_id] %>
+          <li><a href="/users/<%= session[:user_id] %>">My Page</a></li>
+          <li><a href="/create">Create Post</a></li>
+          <li><a href="/logout">Log out</a></li>
+        <% else %>
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login" class="button theme">Log In</a></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+  <script src="functions.js"></script>
+  <%= yield %>
+  
+  <div id="theme-chooser">
+    <span class="theme-text">Theme: </span>
+    <div class="switch">
+      <input class="switch-input" onclick="javascript:switchTheme();" id="switch-theme" type="checkbox" name="switch-theme" <% if session[:alt_theme] then %> checked <% end %>>
+      <label class="switch-paddle" for="switch-theme">
+        <span class="switch-active theme-text">Dark</span>
+        <span class="switch-inactive theme-text">Light</span>
+      </label>
+    </div>
+  </div>
+
+  <script src="/foundation/js/vendor/what-input.js"></script>
+  <script src="/foundation/js/vendor/foundation.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/main.js"></script>
+</body>
+</html>

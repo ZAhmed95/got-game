@@ -1,0 +1,19 @@
+<div class="grid-x theme alt title-card">
+  <div class="cell header-section">
+    <h1> <%= user.username %> </h1>
+    <h2> <%= "#{profile.first_name} #{profile.last_name}" %> </h2>
+    <p> <%= profile.email %> </p>
+
+    <h1> <%= if user.id == session[:user_id] then "My Latest Posts:" else "Latest Posts by #{user.username}:" end %> </h1>
+  </div>
+</div>
+
+<div class="posts-section">
+  <%= erb :posts, locals: {posts: posts} %>
+</div>
+
+<% if user.id == session[:user_id] then %>
+  <form action="/users/delete/<%= user.id %>" method="post">
+    <input class="alert button" type="submit" name="submit-delete-user" value="Delete account">
+  </form>
+<% end %>

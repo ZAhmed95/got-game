@@ -1,0 +1,39 @@
+@import "colors";
+
+$border-radius: 10px;
+
+.title-card {
+  margin: 10px 10px;
+  border-radius: $border-radius;
+}
+
+.game-search-item:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+#tagline {
+  margin: 50px 0;
+}
+
+#about {
+  padding: 20px 0;
+}
+
+.rounded {
+  border-radius: $border-radius;
+}
+
+#theme-chooser {
+  position: fixed;
+  right: 10px;
+  bottom: 0;
+}
+
+#theme-chooser .switch-input {
+  width: 100px;
+}
+
+.header-section {
+  padding-left: 2rem;
+}

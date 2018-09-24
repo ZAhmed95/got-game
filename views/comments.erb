@@ -1,0 +1,11 @@
+<div class="grid-container">
+  <% comments.each do |comment| %>
+    <!-- TODO: the below div will become an erb partial -->
+    <div class="grid-x theme alt title-card">
+      <div class="cell small-10 small-offset-1">
+        <h3> <%= comment.user.username %> </h3><hr>
+        <p> <%= comment.comment %> </p>
+      </div>
+    </div>
+  <% end %>
+</div>

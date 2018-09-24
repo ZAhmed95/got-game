@@ -1,0 +1,15 @@
+<div class="grid-container">
+  <% posts.each do |post| %>
+    <!-- Everything in this div should be placed in a partial template -->
+    <div class="grid-x theme alt title-card">
+      <div class="cell small-10 small-offset-1">
+        <a href=<%= "/posts/#{post.id}" %>>
+          <div>
+            <h1> <%= post.title %> <span class="theme-text h3"> comments: <%= post.comments.size %> </span> </h1>
+            <h2 class="subheader">created by <%= post.user.username %> at <%= post.created_at.strftime("%l:%M %p on %m/%d/%Y") %> </h2>
+          </div>
+        </a>
+      </div>
+    </div>
+  <% end %>
+</div>

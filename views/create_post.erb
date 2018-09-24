@@ -1,0 +1,49 @@
+<div class="new-post-form grid-container">
+  <h1 class="theme-text"><%= "#{if new then "Create" else "Edit" end} Post" %></h1>
+  <!-- game select section, only show when creating new post -->
+  <% if new then %>
+  <div class="grid-x grid-margin-x">
+    <!-- select game button -->
+    <div class="cell small-2">
+      <button id="select-game" class="button" type="button" data-toggle="found-games">Select Game</button>
+    </div>
+    <!-- game selector dropdown -->
+    <div class="dropdown-pane" id="found-games" data-dropdown data-auto-focus="true">
+      <form action="javascript:postCreator.searchGame();" name="game-search-form">
+        <label for="search-game">Search for a game:</label>
+        <input type="text" name="search-game">
+      </form>
+      <div id="games-list">
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <!-- original attributes  -->
+  <!-- test attributes  action="/create" method="get" -->
+  <form class="theme alt grid-x rounded" data-abide novalidate name="create-post-form" action="/<%= if new then "create" else "posts/edit/#{post.id}" end %>" method="post">
+    <div class="cell small-10 small-offset-1">
+      <div data-abide-error class="alert callout" aria-live="assertive" style="display: none;">
+        <p> There are some errors in your form.</p>
+      </div>
+      <label for="game_title" class="h3">Selected Game:</label>
+      <input type="text" name="game_title" placeholder="select a game" required readonly>
+      <label for="title" class="h3">Post Title:
+        <input type="text" name="title" value="<%= if new then "" else post.title end %>"id="input-post-title" required>
+      </label>
+      <label class="form-error" data-form-error-for="input-post-title">Post Title is required.</label>
+      <div>
+        <input type="hidden" name="game_id" aria-error-message="game-missing-error" required>
+        <span class="form-error" id="game-missing-error"> Select a game </span>
+      </div>
+      <label for="content" class="h3">Content:</label>
+      <textarea name="content" id="post-content" cols="30" rows="10"> <%= if new then "" else post.content end %> </textarea>
+      <input type="submit" name="submit-post">
+    </div>
+  </form>
+</div>
+
+<!-- load page specific functions -->
+<script>
+  var postCreator = CreatePost();
+</script>

@@ -1,0 +1,51 @@
+<!-- TODO: get game data from IGDB (cover image, name, url) -->
+<div id="post-section" class="grid-x theme alt title-card">
+  <div class="cell small-12 header-section">
+    <h1> <%= post.title %> </h1>
+    <h2> Game: <%= post.game_title %> <% if game then %><button class="button theme dropdown" type="button" data-toggle="game-info"></button><% end %> </h2>
+    <% if game then %>
+    <div class="dropdown-pane" id="game-info" data-dropdown data-auto-focus="true">
+      <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+          <!-- game cover image -->
+          <div class="cell small-4">
+            <img src="<%= game.cover.url %>" alt="cover image for <%= game.name %>">
+          </div>
+          <!-- game info -->
+          <div class="cell small-8">
+            <h3> <%= game.name %> </h3>
+            <a href="<%= game.url %>">IGDB link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <h2 class="subheader">created by <%= post.user.username %> at <%= post.created_at.strftime("%l:%M %p on %m/%d/%Y") %> </h2>
+    <hr>
+    <h3>Content:</h3>
+    <p class="h4"> <%= post.content %> </p>
+    <% if logged_in and session[:user_id] == post.user_id then %>
+      <a href="/posts/edit/<%= post.id %>" class="button">Edit</a>
+    <% end %>
+  </div>
+</div>
+
+<!-- Comments on this post appear in this div -->
+<div class="comments-section">
+  <h1>Comments: </h1>
+  <%= erb :comments, locals: {post: post, comments: comments} %>
+</div>
+
+<% if logged_in then %>
+  <h2 id="leave-comment-header">Leave a comment: </h2>
+  <div id="comment-form">
+    <form action="/comment" method="post">
+      <textarea name="comment" id="comment-text" cols="30" rows="2"></textarea>
+      <input type="submit" name="submit-comment" value="Comment">
+      <input type="hidden" name="user_id" value="<%= session[:user_id] %>" >
+      <input type="hidden" name="post_id" value="<%= post.id %>" >
+    </form>
+  </div>
+<% else %>
+  <a href="/login">Log in to leave a comment</a>
+<% end %>

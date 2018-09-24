@@ -1,0 +1,16 @@
+<div class="grid-container">
+  <h1 class="theme">All Users:</h1>
+
+  <div id="users-section">
+    <% users.each do |user| %>
+    <a href="/users/<%= user.id %>">
+      <div class="grid-x theme alt title-card">
+        <div class="cell small-10 small-offset-1">
+          <h2> <%= user.username %> </h2><hr>
+          <h3 class="h4"> posts: <%= user.posts.size %> </h3>
+        </div>
+      </div>
+    </a>
+    <% end %>
+  </div>
+</div>

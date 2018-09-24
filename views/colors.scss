@@ -1,0 +1,76 @@
+// dark theme colors:
+$dark-bg-1: rgb(32,34,37);
+$dark-bg-2: rgb(54,57,63);
+$dark-button: rgb(113,54,138);
+$dark-font: white;
+
+//light theme colors:
+$light-bg-1: white;
+$light-bg-2: lightgray;
+$light-button: lightblue;
+$light-font: black;
+
+// both themes
+$highlight: rgb(114,137,218);
+
+.light {
+  background-color: $light-bg-1;
+
+  .theme {
+    background-color: $light-bg-1;
+    color: $light-font;
+  }
+  
+  .theme.alt {
+    background-color: $light-bg-2;
+  }
+  
+  .button.theme {
+    background-color: $light-button;
+  }
+
+  .theme-text {
+    color: $dark-bg-1;
+  }
+
+  a {
+    color: $light-font;
+  }
+
+  .button:hover {
+    background-color: $highlight;
+  }
+}
+
+.dark {
+  background-color: $dark-bg-1;
+
+  .theme {
+    background-color: $dark-bg-1;
+    color: $dark-font;
+  }
+  
+  .theme.alt {
+    background-color: $dark-bg-2;
+  }
+  
+  .button.theme {
+    background-color: $dark-button;
+  }
+  
+  .theme-text {
+    color: $light-bg-1;
+  }
+
+  a {
+    color: $dark-font;
+  }
+
+  .button:hover {
+    background-color: $highlight;
+  }
+}
+
+a:hover {
+  color: $highlight;
+}
