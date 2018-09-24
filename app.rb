@@ -48,11 +48,6 @@ helpers do
   end
 end
 
-get '/main.css' do
-  headers 'Content-Type' => 'text/css'
-  scss :main
-end
-
 get '/' do
   redirect_here
   erb :index
@@ -240,6 +235,11 @@ end
 post '/switch-theme' do
   session[:alt_theme] = !session[:alt_theme]
   redirect back
+end
+
+get '/style.css' do
+  headers 'Content-Type' => 'text/css'
+  scss :style
 end
 
 get '*' do
