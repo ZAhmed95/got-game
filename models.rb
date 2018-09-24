@@ -1,6 +1,12 @@
 require 'sinatra/activerecord'
 
-set :database, "#{ENV['DATABASE_URL']}/gaming"
+configure :development do
+  set :database, "#{ENV['DATABASE_URL']}/gaming"
+end
+
+configure :production do
+  set :database, "#{ENV['DATABASE_URL']}"
+end
 
 class User < ActiveRecord::Base
   has_one :profile, dependent: :delete
