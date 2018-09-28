@@ -128,7 +128,7 @@ get %r{/users/(?<id>\d+)} do
     erb :user, locals: {
       user: this_user, 
       profile: this_user.profile,
-      posts: this_user.posts.includes(:comments).order(created_at: :desc)
+      posts: this_user.posts.includes(:comments).order(created_at: :desc).limit(20)
     }
   else
     error404
@@ -184,7 +184,7 @@ end
 
 get '/posts/?' do
   redirect_here
-  erb :posts, locals: {posts: Post.includes(:user, :comments).order(created_at: :desc)}
+  erb :posts, locals: {posts: Post.includes(:user, :comments).order(created_at: :desc).limit(20)}
 end
 
 get '/create/?' do
